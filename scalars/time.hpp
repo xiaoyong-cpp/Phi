@@ -1,5 +1,5 @@
-#ifndef DIMENSIONS_TIME_HPP
-#define DIMENSIONS_TIME_HPP
+#ifndef SCALARS_TIME_HPP
+#define SCALARS_TIME_HPP
 
 #include "base.hpp"
 
@@ -18,6 +18,12 @@ namespace phi {
             name = "Second";
             symbol = "s";
             this->value = value;
+        }
+
+        std::shared_ptr<Scalar> clone() const override {
+            auto result = std::make_shared<Time>();
+            result->value = value;
+            return result;
         }
     };
     

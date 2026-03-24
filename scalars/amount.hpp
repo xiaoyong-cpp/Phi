@@ -1,5 +1,5 @@
-#ifndef SCALARS_AMOUNT_HPP
-#define SCALARS_AMOUNT_HPP
+#ifndef PHI_SCALARS_AMOUNT_HPP
+#define PHI_SCALARS_AMOUNT_HPP
 
 #include "base.hpp"
 
@@ -18,6 +18,12 @@ namespace phi {
             name = "Mole";
             symbol = "mol";
             this->value = value;
+        }
+
+        std::shared_ptr<Scalar> clone() const override {
+            auto result = std::make_shared<Amount>();
+            result->value = value;
+            return result;
         }
     };
     

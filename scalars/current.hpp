@@ -1,5 +1,5 @@
-#ifndef SCALARS_CURRENT_HPP
-#define SCALARS_CURRENT_HPP
+#ifndef PHI_SCALARS_CURRENT_HPP
+#define PHI_SCALARS_CURRENT_HPP
 
 #include "base.hpp"
 
@@ -18,6 +18,12 @@ namespace phi {
             name = "Ampere";
             symbol = "A";
             this->value = value;
+        }
+
+        std::shared_ptr<Scalar> clone() const override {
+            auto result = std::make_shared<Current>();
+            result->value = value;
+            return result;
         }
     };
     

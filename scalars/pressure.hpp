@@ -1,5 +1,5 @@
-#ifndef SCALARS_PRESSURE_HPP
-#define SCALARS_PRESSURE_HPP
+#ifndef PHI_SCALARS_PRESSURE_HPP
+#define PHI_SCALARS_PRESSURE_HPP
 
 #include "base.hpp"
 
@@ -22,6 +22,12 @@ namespace phi {
             name = "Pascal";
             symbol = "Pa";
             this->value = value;
+        }
+
+        std::shared_ptr<Scalar> clone() const override {
+            auto result = std::make_shared<Pressure>();
+            result->value = value;
+            return result;
         }
     };
     

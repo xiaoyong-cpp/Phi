@@ -1,5 +1,5 @@
-#ifndef SCALARS_TEMPERATURE_HPP
-#define SCALARS_TEMPERATURE_HPP
+#ifndef PHI_SCALARS_TEMPERATURE_HPP
+#define PHI_SCALARS_TEMPERATURE_HPP
 
 #include "base.hpp"
 
@@ -18,6 +18,12 @@ namespace phi {
             name = "Kelvin";
             symbol = "K";
             this->value = value;
+        }
+
+        std::shared_ptr<Scalar> clone() const override {
+            auto result = std::make_shared<Temperature>();
+            result->value = value;
+            return result;
         }
     };
     

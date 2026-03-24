@@ -1,5 +1,5 @@
-#ifndef SCALARS_VELOCITY_HPP
-#define SCALARS_VELOCITY_HPP
+#ifndef PHI_SCALARS_VELOCITY_HPP
+#define PHI_SCALARS_VELOCITY_HPP
 
 #include "base.hpp"
 
@@ -20,6 +20,12 @@ namespace phi {
             name = "Meter per Second";
             symbol = "m/s";
             this->value = value;
+        }
+
+        std::shared_ptr<Scalar> clone() const override {
+            auto result = std::make_shared<Velocity>();
+            result->value = value;
+            return result;
         }
     };
     

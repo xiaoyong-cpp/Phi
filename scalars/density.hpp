@@ -1,5 +1,5 @@
-#ifndef SCALARS_DENSITY_HPP
-#define SCALARS_DENSITY_HPP
+#ifndef PHI_SCALARS_DENSITY_HPP
+#define PHI_SCALARS_DENSITY_HPP
 
 #include "base.hpp"
 
@@ -20,6 +20,12 @@ namespace phi {
             name = "Kilogram per Cubic Meter";
             symbol = "kg/m^3";
             this->value = value;
+        }
+
+        std::shared_ptr<Scalar> clone() const override {
+            auto result = std::make_shared<Density>();
+            result->value = value;
+            return result;
         }
     };
     

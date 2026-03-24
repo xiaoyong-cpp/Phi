@@ -1,5 +1,5 @@
-#ifndef SCALARS_LIGHT_HPP
-#define SCALARS_LIGHT_HPP
+#ifndef PHI_SCALARS_LIGHT_HPP
+#define PHI_SCALARS_LIGHT_HPP
 
 #include "base.hpp"
 
@@ -18,6 +18,12 @@ namespace phi {
             name = "Candela";
             symbol = "cd";
             this->value = value;
+        }
+
+        std::shared_ptr<Scalar> clone() const override {
+            auto result = std::make_shared<Light>();
+            result->value = value;
+            return result;
         }
     };
     

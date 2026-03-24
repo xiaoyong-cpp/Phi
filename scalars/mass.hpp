@@ -1,5 +1,5 @@
-#ifndef DIMENSIONS_MASS_HPP
-#define DIMENSIONS_MASS_HPP
+#ifndef SCALARS_MASS_HPP
+#define SCALARS_MASS_HPP
 
 #include "base.hpp"
 
@@ -18,6 +18,12 @@ namespace phi {
             name = "Kilogram";
             symbol = "kg";
             this->value = value;
+        }
+
+        std::shared_ptr<Scalar> clone() const override {
+            auto result = std::make_shared<Mass>();
+            result->value = value;
+            return result;
         }
     };
     

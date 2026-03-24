@@ -1,5 +1,5 @@
-#ifndef SCALARS_FORCE_HPP
-#define SCALARS_FORCE_HPP
+#ifndef PHI_SCALARS_FORCE_HPP
+#define PHI_SCALARS_FORCE_HPP
 
 #include "base.hpp"
 
@@ -22,6 +22,12 @@ namespace phi {
             name = "Newton";
             symbol = "N";
             this->value = value;
+        }
+
+        std::shared_ptr<Scalar> clone() const override {
+            auto result = std::make_shared<Force>();
+            result->value = value;
+            return result;
         }
     };
     

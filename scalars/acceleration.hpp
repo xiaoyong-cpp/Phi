@@ -1,5 +1,5 @@
-#ifndef DIMENSIONS_ACCELERATION_HPP
-#define DIMENSIONS_ACCELERATION_HPP
+#ifndef SCALARS_ACCELERATION_HPP
+#define SCALARS_ACCELERATION_HPP
 
 #include "base.hpp"
 
@@ -20,6 +20,12 @@ namespace phi {
             name = "Meter per Second per Second";
             symbol = "m/s^2";
             this->value = value;
+        }
+
+        std::shared_ptr<Scalar> clone() const override {
+            auto result = std::make_shared<Acceleration>();
+            result->value = value;
+            return result;
         }
     };
     

@@ -1,9 +1,10 @@
-#ifndef DIMENSIONS_BASE_HPP
-#define DIMENSIONS_BASE_HPP
+#ifndef SCALARS_BASE_HPP
+#define SCALARS_BASE_HPP
 
 #include "../defines.hpp"
 #include <string>
 #include <array>
+#include <memory>
 
 namespace phi {
     using BaseDimension = std::array<Pure, 7>;
@@ -23,6 +24,30 @@ namespace phi {
         std::string name = "Unknown Dimension";
         std::string symbol = "uu";
         Scalar() {}
+        virtual ~Scalar() = default;
+
+        virtual std::shared_ptr<Scalar> clone() const {
+            return std::make_shared<Scalar>(*this);
+        }
+
+        virtual std::shared_ptr<Scalar> add(const Scalar& other) const {
+            auto result = this->clone();
+            result->value += other.value;
+            return result;
+        }
+
+        virtual std::shared_ptr<Scalar> negate() const {
+            auto result = this->clone();
+            result->value = -result->value;
+            return result;
+        }
+
+        virtual std::shared_ptr<Scalar> multiply(Pure scalar) const {
+            auto result = this->clone();
+            result->value *= scalar;
+            return result;
+        }
+
         Scalar operator* (const Scalar& other) const {
             Scalar result = *this;
             for(int i = 0; i < 7; i++) {
@@ -41,16 +66,25 @@ namespace phi {
             return result;
         }
 
-        Scalar operator*(const Pure& other) const {
+        Scalar operator* (Pure scalar) const {
             Scalar result = *this;
-            result.value *= other;
+            result.value *= scalar;
             return result;
         }
 
-        Scalar operator/(const Pure& other) const {
+        Scalar operator/ (Pure scalar) const {
             Scalar result = *this;
-            result.value /= other;
+            result.value /= scalar;
             return result;
+        }
+
+        bool sameDimensions(const Scalar& other) const {
+            for(int i = 0; i < 7; i++) {
+                if(dimensions[i] != other.dimensions[i]) {
+                    return false;
+                }
+            }
+            return true;
         }
     };
 }

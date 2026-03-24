@@ -1,5 +1,5 @@
-#ifndef DIMENSIONS_LONG_HPP
-#define DIMENSIONS_LONG_HPP
+#ifndef SCALARS_LONG_HPP
+#define SCALARS_LONG_HPP
 
 #include "base.hpp"
 
@@ -18,6 +18,12 @@ namespace phi {
             name = "Meter";
             symbol = "m";
             this->value = value;
+        }
+
+        std::shared_ptr<Scalar> clone() const override {
+            auto result = std::make_shared<Long>();
+            result->value = value;
+            return result;
         }
     };
     
