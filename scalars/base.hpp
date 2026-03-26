@@ -4,7 +4,6 @@
 #include "../defines.hpp"
 #include <string>
 #include <array>
-#include <memory>
 
 namespace phi {
     using BaseDimension = std::array<Pure, 7>;
@@ -26,23 +25,23 @@ namespace phi {
         Scalar() {}
         virtual ~Scalar() = default;
 
-        virtual std::shared_ptr<Scalar> clone() const {
-            return std::make_shared<Scalar>(*this);
+        virtual Scalar* clone() const {
+            return new Scalar(*this);
         }
 
-        virtual std::shared_ptr<Scalar> add(const Scalar& other) const {
+        virtual Scalar* add(const Scalar& other) const {
             auto result = this->clone();
             result->value += other.value;
             return result;
         }
 
-        virtual std::shared_ptr<Scalar> negate() const {
+        virtual Scalar* negate() const {
             auto result = this->clone();
             result->value = -result->value;
             return result;
         }
 
-        virtual std::shared_ptr<Scalar> multiply(Pure scalar) const {
+        virtual Scalar* multiply(Pure scalar) const {
             auto result = this->clone();
             result->value *= scalar;
             return result;

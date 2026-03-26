@@ -24,8 +24,8 @@ namespace phi {
             this->value = value;
         }
 
-        std::shared_ptr<Scalar> clone() const override {
-            auto result = std::make_shared<Force>();
+        Scalar* clone() const override {
+            auto result = new Force();
             result->value = value;
             return result;
         }

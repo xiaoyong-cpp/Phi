@@ -1,4 +1,4 @@
-﻿﻿#ifndef PHI_CONSTANTS_HPP
+#ifndef PHI_CONSTANTS_HPP
 #define PHI_CONSTANTS_HPP
 
 #include "defines.hpp"

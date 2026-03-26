@@ -6,13 +6,12 @@
 #include "../exceptions.hpp"
 #include <string>
 #include <cmath>
-#include <memory>
 
 namespace phi {
     class Vector2D {
     public:
-        std::shared_ptr<Scalar> x;
-        std::shared_ptr<Scalar> y;
+        Scalar* x;
+        Scalar* y;
 
         Pure angle() const {
             return atan2(y->value, x->value);
@@ -22,9 +21,9 @@ namespace phi {
             return sqrt(y->value * y->value + x->value * x->value);
         }
 
-        Vector2D(std::shared_ptr<Scalar> __x, std::shared_ptr<Scalar> __y) {
-            x = std::move(__x);
-            y = std::move(__y);
+        Vector2D(Scalar* __x, Scalar* __y) {
+            x = __x;
+            y = __y;
         }
 
         Vector2D(const Vector2D& other)
