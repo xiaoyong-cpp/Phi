@@ -1,7 +1,8 @@
-#ifndef PHI_FRAME2D_HPP
-#define PHI_FRAME2D_HPP
+﻿#ifndef PHI_KINEMATICS_FRAME2D_HPP
+#define PHI_KINEMATICS_FRAME2D_HPP
 
 #include "../vectors/vector2d.hpp"
+#include "particle2d.hpp"
 #include "../scalars.hpp"
 #include <vector>
 #include <map>
@@ -22,6 +23,7 @@ namespace phi {
         std::map<std::string, RelativeInformation> relative_informations;
     public:
         std::string name;
+        std::map<std::string, Particle2D*> particles;
         Frame2D() = default;
         Frame2D* getRelative(const std::string& name) {
             return relative_informations[name].target;

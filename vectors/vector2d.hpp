@@ -26,6 +26,18 @@ namespace phi {
             y = __y;
         }
 
+        Vector2D(Scalar& __x, Scalar& __y) {
+            x = &__x;
+            y = &__y;
+        }
+
+        Vector2D operator/(const Scalar& scalar) const {
+            if(!x || !y || scalar.value == 0) {
+                throw NonsensicalException("Division by zero");
+            }
+            return Vector2D(&(*x / scalar), &(*y / scalar));
+        }
+
         Vector2D(const Vector2D& other)
             : x(other.x ? other.x->clone() : nullptr),
               y(other.y ? other.y->clone() : nullptr) {}
@@ -75,6 +87,10 @@ namespace phi {
 
         friend Vector2D operator*(Pure scalar, const Vector2D& vec) {
             return vec * scalar;
+        }
+
+        Vector2D operator*(const Scalar& scalar) const {
+            return Vector2D(&(*x * scalar), &(*y * scalar));
         }
 
         Vector2D operator/(Pure scalar) const {
